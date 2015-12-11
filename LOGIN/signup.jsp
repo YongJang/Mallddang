@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -36,7 +36,7 @@
 				</div>
 				
 				<div class="row">
-					<input type="email" name="email" id="fancy-text" /> <label
+					<input type="text" name="email" id="fancy-text" /> <label
 						for="fancy-text">이메일</label>
 				</div>
 				

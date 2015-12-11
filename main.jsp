@@ -4,6 +4,12 @@
 <%
    String memberId = (String) session.getAttribute("memID");
 %>
+<script type="text/javascript">
+	function openMember() {
+		//창을 관리하는 내장객체는 window
+		window.open("./LOGIN/signup.jsp", "", "width=400, height=800");
+	}
+</script>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -52,7 +58,7 @@
                 <%
                     if(memberId == null){
                 %>
-				<a class="btn-primary" href="./LOGIN/signup.jsp">회원 가입</a>
+				<a class="btn-primary" onclick="openMember();">회원 가입</a>
                 <%
                    }
                 %>
