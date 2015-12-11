@@ -1,0 +1,13 @@
+create table member(
+num int(11) primary key not null,
+id varchar(15) not null,
+passwd varchar(15) not null,
+name char(15) null,
+e_mail varchar(30) null,
+phone varchar(15) null,
+zipcode char(10) null,
+address varchar(60) null,
+regdate date null)charset=utf8;
+
+ALTER TABLE member MODIFY num INT NOT NULL AUTO_INCREMENT;
+
