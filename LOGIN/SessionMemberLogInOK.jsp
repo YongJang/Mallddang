@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import="java.util.*" %>
 <%
@@ -19,7 +19,7 @@
 %>
 <script>
 	alert("로그인 되었습니다. ");
-	location.href = "<%=request.getContextPath()%>/main.jsp";
+	location.href = "../main.jsp";
 </script>
 <%
 	ArrayList<String> list = new ArrayList<String>();
