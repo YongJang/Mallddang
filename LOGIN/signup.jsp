@@ -26,7 +26,7 @@
 				</div>
 
 				<div class="row">
-					<input type="text" name="passwd" id="fancy-text" /> <label
+					<input type="password" name="passwd" id="fancy-text" /> <label
 						for="fancy-text">패스워드</label>
 				</div>
 				
@@ -36,7 +36,7 @@
 				</div>
 				
 				<div class="row">
-					<input type="text" name="email" id="fancy-text" /> <label
+					<input type="email" name="email" id="fancy-text" /> <label
 						for="fancy-text">이메일</label>
 				</div>
 				
@@ -48,8 +48,8 @@
 				<div class="input-group row">
 					<input id="sample6_postcode" type="text" name="zipcode" id="fancy-text" /> <label
 						for="fancy-text">우편번호</label>
-					<button onclick="sample6_execDaumPostcode()"
-				style="cursor: hand;" class='input-group-addon'>우편번호 찾기</button>
+					<label onclick="sample6_execDaumPostcode()"
+				style="cursor: hand;" class='input-group-addon'>우편번호 찾기</label>
 				</div>
 				
 				<div class="row">

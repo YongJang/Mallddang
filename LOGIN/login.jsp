@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 %>
@@ -8,7 +9,7 @@
 %>
 <script>
 	alert("로그인 되었습니다");
-	location.href = "SessionLogInConfirm.jsp";
+	location.href = "<%=request.getContextPath()%>/main.jsp";
 </script>
 <%
 	}
@@ -16,8 +17,6 @@
 <html>
 <head>
 <title>로그인</title>
-<link href="../assets/bootstrap-3.3.5-dist/css/bootstrap.min.css"
-	rel="stylesheet">
 <link href="../assets/input/input.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="../assets/input/css/normalize.css">
 <link rel="stylesheet" href="../assets/input/css/style.css">
@@ -38,16 +37,16 @@
 	<div class="site-wrapper">
 		<div class="container">
 			<form class="form-signin" name="post" method="post"
-				action="loginProc.jsp">
+				action="SessionMemberLogInOK.jsp">
 				<h2 style="color: #0288D1" class="form-signin-heading">Welcome</h2>
 
 				<div class="row">
-					<input type="text" name="id" id="fancy-text" /> <label
+					<input type="text" name="memberid" id="fancy-text" /> <label
 						for="fancy-text">ID</label>
 				</div>
 
 				<div class="row">
-					<input type="text" name="passwd" id="fancy-text" /> <label
+					<input type="password" name="memberpw" id="fancy-text" /> <label
 						for="fancy-text">PW</label>
 				</div>
 				<div class="row">

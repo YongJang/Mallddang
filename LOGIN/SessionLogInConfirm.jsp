@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+    pageEncoding="EUC-KR"%>
+<%
+	String memberId = (String) session.getAttribute("memID");
+	if (memberId == null) {
+%>
+<script>
+	alert("로그인 되지 않았습니다.");
+	location.href = "SessionMemberLogIn.jsp";
+</script>
+<%
+	}
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link href="assets/bootstrap-3.3.5-dist/css/bootstrap.min.css"
@@ -20,14 +29,7 @@
 					<li><a href="./LOGIN/login.jsp">Login</a></li>
 				</ul>
 				<ul class="pull-right">
-				<%
-					String memberId = (String) session.getAttribute("memID");
-					if (memberId != null) {
-				%>
-					<li><a><%=memberId %> Welcome!</a></li>
-				<%
-					}
-				%>
+					<li><a><%=memberId %>님 환영합니다!</a></li>
 				</ul>
 			</div>
 		</div>

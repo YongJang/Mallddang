@@ -8,6 +8,3 @@ phone varchar(15) null,
 zipcode char(10) null,
 address varchar(60) null,
 regdate date null)charset=utf8;
-
-ALTER TABLE member MODIFY num INT NOT NULL AUTO_INCREMENT;
-

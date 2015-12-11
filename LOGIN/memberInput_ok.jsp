@@ -1,86 +1,31 @@
-﻿<%@ page contentType="text/html;charset=utf-8" import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="member.*" %>
+<!-- 이전 페이지에서 항목이 넘어온다. -->
+<%	request.setCharacterEncoding("utf-8"); %>
+<!-- jsp 로 시작하는 태그를 가지고 정보를 저장하겠다. -->
+
+<!-- 빈 상자 생성(MemberDTO 객체 생성) -->
+<jsp:useBean id="MemDTO" class="member.MemberDTO"/>
+
+<!-- 내가만든 RegisterBean객체에 알아서 데이터 집어넣기 -->
+<jsp:setProperty name="MemDTO" property="*"/>
+
+<!-- useBean 태그로 MemberMgr객체 생성 -->
+<jsp:useBean id="MemDAO" class="member.MemberDAO"></jsp:useBean>
 <%
-/* desc member; 형태
-create table member(
-num int(11) primary key not null,
-id varchar(15) not null,
-passwd varchar(15) not null,
-name char(15) null,
-e_mail varchar(30) null,
-phone varchar(15) null,
-zipcode char(10) null,
-address varchar(60) null,
-regdate date null)charset=utf8;
-*/
-
-
-request.setCharacterEncoding("utf-8");
-Class.forName("org.gjt.mm.mysql.Driver");
-Connection conn = null;
-Statement stmt = null;
-ResultSet rs = null;
-   
-	String id = request.getParameter("id");
-	String passwd = request.getParameter("passwd");
-	String name = request.getParameter("name");
-        String e_mail = request.getParameter("email");
-	String phone = request.getParameter("phone");
-	String zipcode = request.getParameter("zipcode");
-	String address = request.getParameter("address");
-
-int counter = 0;
-try{  	
-	//커넥션 생성
-	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mallddang","root","multi");
-   
-   // 커넥션을 통해 질의를 전송하기 위한 객체(stmt)
-   // stmt = conn.createStatement();
-   // 객체(stmt)를 통해서 질의를 수행할 메소드를 사용
-   // 질의수행 결과는 ResultSet으로 받는다.
-
-	stmt = conn.createStatement();
-	int count=0;
-	
- 	counter=stmt.executeUpdate("insert into member(id,passwd,name,e_mail,phone,zipcode,address) values('"+id+"','"+passwd+"','"+name+"','"+e_mail+"','"+phone+"','"+zipcode+"','"+address+"')");
-/*
-	PreparedStatement pstmt = null;
-	String sql = "insert into member values(?,?,?,?,?,?,?)";
-	pstmt = conn.prepareStatement(sql);
-	pstmt.setString(1,id);
-	pstmt.setString(2,passwd);
-	pstmt.setString(3,name);
-	pstmt.setString(4,e_mail);
-	pstmt.setString(5,phone);
-	pstmt.setString(6,zipcode);
-	pstmt.setString(7,address);
-	pstmt.executeUpdate();
-	
-*/
-	rs = stmt.executeQuery("SELECT * FROM MEMBER");
-
-	
-	if(rs != null){
-%>
-<script>
-   alert("회원 가입이 완료 되었습니다.");
-   location.href = "../main.jsp";
-</script>
-<%
-	}
-
-}catch(SQLException sqlException){
-	System.out.println("sql exception");
-}catch(Exception exception){
-	System.out.println("exception");
-}finally{
-	if( rs != null ) 
-		try{ rs.close(); } 
-		catch(SQLException ex) {}
-	if( stmt != null ) 
-		try { stmt.close(); } 
-		catch(SQLException ex) {}
-	if( conn != null ) 
-		try{ conn.close(); }
-		catch(Exception ex){}
-}
-%>
+	//DAO 생성 후 DTO 주고 등록하라고 시킨다.
+	//MemberDAO dao = new MemberDAO();
+	boolean result = MemDAO.insertMember(MemDTO);	
+		if(result){%><!-- 성공 : 창닫고 로그인페이지로 이동 -->
+	 	<script type="text/javascript">
+	 		alert("가입 성공! \n로그인하세요");
+	 		window.opener.parent.location.href="login.jsp";//부모창 주소 변경
+	 		window.close();//창 닫기
+	 	</script>
+<%	}else{ %><!-- 아이디 중복 : 뒤로보낸다. -->
+		<script type="text/javascript">
+	 		alert("아이디가 이미 사용중입니다.");
+	 		history.back();//뒤로 보내기
+	 	</script>
+<%	} %>
