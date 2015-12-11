@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%@ page import="food.*,java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
    String memberId = (String) session.getAttribute("memID");
+   request.setCharacterEncoding("utf-8");
 %>
-<style>
-    .goods{
-       
-    }
-</style>
+<jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
+<jsp:useBean id="FoodDAO" class="food.FoodDAO"/>
+<%
+    Vector<FoodDTO> list = new Vector<FoodDTO>();
+    list = FoodDAO.getFoodList();
+    int vectorSize = list.size();
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -58,24 +62,33 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="col">
-                        <img class="goods" src="../assets/img/food0.jpg">
-                        <h2>냉동식품 세트</h2>
-                        <p>7,800원</p>
-                        <a class="btn-default" href="./GOODS/food.jsp">Look Around</a>
-                    </div>
-                    <div class="col">
-                        <img class="goods" src="../assets/img/food1.jpg">
-                        <h2>라면 세트</h2>
-                        <p>6,990원</p>
-                        <a class="btn-default" href="#">Go Shopping</a>
-                    </div>
-                    <div class="col">
-                        <img class="goods" src="../assets/img/food2.jpg">
-                        <h2>맥심 모카/화이트</h2>
-                        <p>14,950원</p>
-                        <a class="btn-default" href="#">Get Voucher</a>
-                    </div>
+                    <table>
+<%
+    for(int i = 0;i< vectorSize;i++){
+        FoodDTO = (FoodDTO)list.get(i);
+        if(i%3 == 0){
+%>
+            <tr>
+<%
+        }
+%>
+            <td>
+                <div class="supporting">
+                    <center><img class="goods" src="<%=FoodDTO.getImg()%>"></center>
+                    <center><h2><%=FoodDTO.getName()%></h2></center>
+                    <center><p><%=FoodDTO.getCost()%></p></center>
+                    <center><a class="btn-default" href="<%=FoodDTO.getFilepath()%>">Look Around</a></center>
+                </div>
+            </td>
+<%
+        if(i%3 == 2){
+%>
+            </tr>
+<%
+        }
+    }
+%>
+                    </table>
                 </div>
                 <div class="col-md-2">
                 </div>
