@@ -20,6 +20,10 @@
 	rel="stylesheet">
 <link href="../assets/main/main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="https://s3-ap-northeast-1.amazonaws.com/projectxinventor/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/main/food.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="../assets/main/food.js"></script>
 <title>몰땅</title>
 </head>
 <body>
@@ -73,7 +77,7 @@
         }
 %>
             <td>
-                <div class="supporting">
+                <div class="supporting food" id="<%=FoodDTO.getNum()%>">
                     <center><img class="goods" src="<%=FoodDTO.getImg()%>"></center>
                     <center><h2><%=FoodDTO.getName()%></h2></center>
                     <center><p><%=FoodDTO.getCost()%></p></center>
@@ -90,7 +94,11 @@
 %>
                     </table>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" id="cartSpace">
+                    <div id =cartContainer>
+                        <div id="fixedCart"></div>
+                        <a onclick="buy();"><div id="buybutton"></div></a>
+                    </div>
                 </div>
             </div>
 		</div>
@@ -98,3 +106,9 @@
 	</div>
 </body>
 </html>
+<script>
+    function buy(){
+        prompt(goodsArray.pop());
+        return;
+    }
+</script>

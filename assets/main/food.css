@@ -1,0 +1,33 @@
+#cartContainer{
+    position:fixed;
+    left: 82%;
+    top: 200px;
+    width: 200px;
+    height: 450px;
+    z-index: 0;
+}
+
+#fixedCart{ 
+    background-image: url("../img/fixedcart.jpg");
+    width: 200px;
+    height: 300px;
+    padding-top: 55px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+}
+
+#cartSpace{
+    min-height: auto;
+}
+
+#buybutton{
+    width: 200px;
+    height: 50px;
+    background-image: url("../img/buybutton.jpg");
+}
+
+.food{
+    z-index: 1;
+}
+
