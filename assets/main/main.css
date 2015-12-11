@@ -101,7 +101,8 @@ html, body {
 }
 
 .supporting img {
-	height: 32px;
+    width: 60%;
+	height: 60%;
 }
 
 .supporting h2 {

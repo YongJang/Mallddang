@@ -73,7 +73,7 @@
 					src="https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg">
 				<h2>먹거리</h2>
 				<p>다양한 채소와 과일들을 구경하세요.</p>
-				<a class="btn-default" href="#">Look Around</a>
+				<a class="btn-default" href="./GOODS/food.jsp">Look Around</a>
 			</div>
 			<div class="col">
 				<img
