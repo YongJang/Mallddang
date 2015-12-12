@@ -114,10 +114,10 @@
     function buy(){
         result = confirm("장바구니 페이지로 이동 하시겠습니까?");
         if(result){
-            var outString = "./cart.jsp?list=";
+            var outString = "./addcart.jsp?list=";
             goodsArray.sort();  
             for(i = 0;i < goodsArray.length; i++){
-                outString = outString + goodsArray[i]+"x";
+                outString = outString + goodsArray[i]+"n";
             }
             location.href = outString;
         }
