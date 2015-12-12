@@ -43,11 +43,15 @@
         if(sessionList == null){        // 세션이 존재하지 않으면 세션 생성
             sessionList = new ArrayList<String>();      
             session.setAttribute(sessionKey,sessionList);      // 회원 아이디가 Key, List로는 장바구니 목록
+        }else{                          // 세션이 이미 존재할 경우
+            String goodsList[] = {""};
+            session.removeAttribute(sessionKey);
         }
         
         for(int i = 0; i<numlist.length;i++){
-            sessionList.add(numlist[i]);             // 장바구니 목록 추가
+            sessionList.add(new String(numlist[i]));             // 장바구니 목록 추가
         }
+       
         
 %>
     <script>

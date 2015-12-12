@@ -38,11 +38,11 @@
                     <%
                         if(memberId == null){   
                     %>
-					<li><a href="./LOGIN/login.jsp">Login</a></li>
+					<li><a href="../LOGIN/login.jsp">Login</a></li>
                     <%
                        }else{
                     %>
-                        <li><a href="./LOGIN/logout.jsp">Logout</a></li>
+                        <li><a href="../LOGIN/logout.jsp">Logout</a></li>
                     <%
                        }
                     %>

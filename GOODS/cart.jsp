@@ -3,9 +3,6 @@
 	rel="stylesheet">
 <link href="../assets/main/main.css" rel="stylesheet" type="text/css">
 <link href="./cart.css" rel="stylesheet" type="text/css">    
-<jsp:include page="../LAYOUT/top.jsp"/>
-<jsp:useBean id="FoodDAO" class="food.FoodDAO"/>
-<jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
 <%
     String userId = (String) session.getAttribute("memID");     // 회원 로그인 상태 확인
 	boolean isLogin = false;
@@ -15,6 +12,36 @@
 	} else {//정보 있음, 로그인 상태
 		isLogin = true;
 	}
+%>
+<div class="header">
+	<div class="container">
+		<div class="nav">
+			<ul class="pull-left">
+				<li><a>About</a></li>
+				<li><a href="../Z/BOARD/list.jsp">Board</a></li>
+				<li><a>Recent</a></li>
+				<%
+                        if(!isLogin){   
+                %>
+				<li><a href="../LOGIN/login.jsp">Login</a></li>
+				<%
+                       }else{
+                %>
+				<li><a href="../LOGIN/logout.jsp">Logout</a></li>
+			</ul>
+			<ul class="pull-right">
+				<li><a><%=userId %> Welcome!</a></li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<jsp:useBean id="FoodDAO" class="food.FoodDAO"/>
+<jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
+<%
    /*
     class SessionMember{
         String id="";
@@ -69,7 +96,7 @@
                                 </tr>
 <%
                 for(int i = 0; i < goodsList.length; i++){
-                    FoodDTO = FoodDAO.getFood(Integer.parseInt(goodsList[i])+1);
+                    FoodDTO = FoodDAO.getFood(Integer.parseInt(goodsList[i]+1));
 %>
                         <tr>
                             <td class="col-md-1"><%=FoodDTO.getNum()%></td>
