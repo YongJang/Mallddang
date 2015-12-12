@@ -8,7 +8,7 @@
 %>
 
 <%
-   
+   /*
    class SessionMember{
         String id="";
         String list[];
@@ -17,27 +17,38 @@
             this.id = id;
         }
    }
-   
+   */
    
   
         String goodslist = request.getParameter("list");
         String numlist[] = goodslist.split("n");
         
+        /*
         SessionMember tempMember = new SessionMember();
         tempMember.list = numlist;
+        */
    
-        if(memberId != null){
-            tempMember.setId(memberId);
-        }else{
-            tempMember.setId("guest");
-        }
+        String sessionKey="";
    
-        ArrayList<SessionMember> sessionList = (ArrayList)session.getAttribute("productlist");
-        if(sessionList == null){
-            sessionList = new ArrayList<SessionMember>();
-            session.setAttribute("productlist",sessionList);
+   
+        if(memberId != null){                   // 회원 로그인 상태
+            sessionKey = memberId;
+        }else{                                  // 비회원 상태
+            sessionKey = "guest";
         }
-        sessionList.add(tempMember);
+        
+        // 세션이 존재하는지 확인
+        ArrayList<String> sessionList = (ArrayList)session.getAttribute(sessionKey);    
+    
+        if(sessionList == null){        // 세션이 존재하지 않으면 세션 생성
+            sessionList = new ArrayList<String>();      
+            session.setAttribute(sessionKey,sessionList);      // 회원 아이디가 Key, List로는 장바구니 목록
+        }
+        
+        for(int i = 0; i<numlist.length;i++){
+            sessionList.add(numlist[i]);             // 장바구니 목록 추가
+        }
+        
 %>
     <script>
         alert("세션이 추가 되었습니다.");

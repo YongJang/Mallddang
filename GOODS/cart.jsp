@@ -6,14 +6,15 @@
 <jsp:useBean id="FoodDAO" class="food.FoodDAO"/>
 <jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
 <%
-    String userId = (String) session.getAttribute("memID");
+    String userId = (String) session.getAttribute("memID");     // 회원 로그인 상태 확인
 	boolean isLogin = false;
 	if (userId == null) {//정보 없음, 로그아웃 상태
 		isLogin = false;
+        userId = "guest";
 	} else {//정보 있음, 로그인 상태
 		isLogin = true;
 	}
-   
+   /*
     class SessionMember{
         String id="";
         String list[];
@@ -21,55 +22,64 @@
         public void setId(String id){
             this.id = id;
         }
-        /*
+        
         public SessionMember(SessionMember s){
             this.id = s.id;
             this.list = s.list;
-        }*/
+        }
     }
-   
+   */
    // try{
-
-            ArrayList<Object> sessionList = (ArrayList)session.getAttribute("productlist");
-            if(sessionList == null){
-                sessionList = new ArrayList<Object>();
-                session.setAttribute("productlist",sessionList);
+            // 회원 ID로 세션 가져오기
+            ArrayList<String> sessionList = (ArrayList)session.getAttribute(userId);    
+    
+            if(sessionList == null){            // 세션이 없을 경우.. 장바구니에 추가한적 없는 경우
+                
+                sessionList = new ArrayList<String>();
+                session.setAttribute(userId,sessionList);
+                
             }
-
-            String memberID="";
-
-            if(isLogin){
-                memberID = userId;
-            }else{
-                memberID = "guest";
-            }
-
-            int tempIndex=-1;
-
-            for(int i = 0; i<sessionList.size(); i++){
-%>
-<%
-                SessionMember tempMember = (Object)(sessionList.get(i));
-                if(memberID.equals(tempMember.id)){
-                    tempIndex = i;
-                    break;
+            
+            String goodsList[] = {""};
+            
+            if(sessionList != null){
+                for(int i = 0; i<sessionList.size(); i++){
+                    goodsList[i] = (String)(sessionList.get(i));      // 배열로 옮기기
                 }
             }
 
-            if(tempIndex == -1){
+            if(goodsList.length<=0){
 %>
             <h1> 장바구니가 비었습니다. </h1>
 <%
             }else{
-
-                SessionMember selectMember = (SessionMember)(sessionList.get(tempIndex));
-
-                for(int i = 0; i < selectMember.list.length; i++){
-                    FoodDTO = FoodDAO.getFood(Integer.parseInt(selectMember.list[i])+1);
+%>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <table>
+                                <th>
+                                    <td>상품번호</td>
+                                    <td>상품이미지</td>
+                                    <td>상품이름</td>
+                                    <td>상품수량</td>
+                                    <td>가격</td>
+                                </th>
+<%
+                for(int i = 0; i < goodsList.length; i++){
+                    FoodDTO = FoodDAO.getFood(Integer.parseInt(goodsList[i])+1);
 %>
                         <h1><%=FoodDTO.getName()%></h1>
 <%
                 }
+%>
+                            </table>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+<%
 
            }
         //}catch(Exception e){
