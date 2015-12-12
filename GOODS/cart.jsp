@@ -10,6 +10,9 @@
 <%
   try{
         String list = request.getParameter("list");
+        String numlist[] = list.split("x");
+   
+        
 %>
     <script>
         alert("<%=list%>");
