@@ -2,6 +2,7 @@
 <link href="../assets/bootstrap-3.3.5-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="../assets/main/main.css" rel="stylesheet" type="text/css">
+<link href="./cart.css" rel="stylesheet" type="text/css">    
 <jsp:include page="../LAYOUT/top.jsp"/>
 <jsp:useBean id="FoodDAO" class="food.FoodDAO"/>
 <jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
@@ -59,18 +60,24 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <table>
-                                <th>
-                                    <td>상품번호</td>
-                                    <td>상품이미지</td>
-                                    <td>상품이름</td>
-                                    <td>상품수량</td>
-                                    <td>가격</td>
-                                </th>
+                                <tr>
+                                    <th class="col-md-1">상품번호</th>
+                                    <th class="col-md-3">상품이미지</th>
+                                    <th class="col-md-2">상품이름</th>
+                                    <th class="col-md-2">상품수량</th>
+                                    <th class="col-md-2">가격</th>
+                                </tr>
 <%
                 for(int i = 0; i < goodsList.length; i++){
                     FoodDTO = FoodDAO.getFood(Integer.parseInt(goodsList[i])+1);
 %>
-                        <h1><%=FoodDTO.getName()%></h1>
+                        <tr>
+                            <td class="col-md-1"><%=FoodDTO.getNum()%></td>
+                            <td class="col-md-3"><img src="<%=FoodDTO.getImg()%>"/></td>
+                            <td class="col-md-2"><%=FoodDTO.getName()%></td>
+                            <td class="col-md-2"><input type="text" name="quantity" value=1></td>
+                            <td class="col-md-2"><%=FoodDTO.getCost()%></td>
+                        </tr>
 <%
                 }
 %>
