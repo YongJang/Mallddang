@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="food.*,java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,8 +6,9 @@
    String memberId = (String) session.getAttribute("memID");
    request.setCharacterEncoding("utf-8");
 %>
-<jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
 <jsp:useBean id="FoodDAO" class="food.FoodDAO"/>
+<jsp:useBean id="FoodDTO" class="food.FoodDTO"/>
+
 <%
     Vector<FoodDTO> list = new Vector<FoodDTO>();
     list = FoodDAO.getFoodList();
@@ -95,10 +96,10 @@
                     </table>
                 </div>
                 <div class="col-md-2" id="cartSpace">
-                    <div id =cartContainer>
-                        <div id="fixedCart"></div>
-                        <a onclick="buy();"><div id="buybutton"></div></a>
-                    </div>
+                        <div id =cartContainer>
+                            <div id="fixedCart"></div>
+                            <a onclick="buy();"><div id="buybutton"></div></a>
+                        </div>
                 </div>
             </div>
 		</div>
@@ -106,9 +107,20 @@
 	</div>
 </body>
 </html>
+<%
+   String goodsArray[];
+%>
 <script>
     function buy(){
-        prompt(goodsArray.pop());
+        result = confirm("장바구니 페이지로 이동 하시겠습니까?");
+        if(result){
+            var outString = "./cart.jsp?list=";
+            goodsArray.sort();  
+            for(i = 0;i < goodsArray.length; i++){
+                outString = outString + goodsArray[i]+"x";
+            }
+            location.href = outString;
+        }
         return;
     }
 </script>
