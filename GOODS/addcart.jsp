@@ -19,7 +19,7 @@
    }
    
    
-  try{
+  
         String goodslist = request.getParameter("list");
         String numlist[] = goodslist.split("n");
         
@@ -44,5 +44,5 @@
         location.href = "./cart.jsp";
     </script>
 <%
-   } catch(Exception e){}
+  
 %>
