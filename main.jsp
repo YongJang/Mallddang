@@ -13,7 +13,7 @@
 <title>몰땅</title>
 </head>
 <body>
-<%@ include file="../LAYOUT/top.jsp"%>
+<%@ include file="./LAYOUT/top.jsp"%>
 	<div class="jumbotron">
 		<div class="container">
 			<div class="main">
@@ -55,6 +55,6 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-<%@ include file="../LAYOUT/bottom.jsp"%>
+<%@ include file="./LAYOUT/bottom.jsp"%>
 </body>
 </html>
