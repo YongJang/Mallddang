@@ -24,6 +24,15 @@ rate		int(11)		NULL,
 regdate		date		NULL
 )charset=utf8;
 
+CREATE TABLE cart (
+memberNum		int(11)		NOT NULL,
+foodList		varchar(200)	NULL,
+foodCost		int(11)		NULL,
+totalCost		varchar(20)	NULL,
+coupon			int(11)		NULL
+)charset=utf-8;
+
+
 //////////// 상품 리스트 ///////////////
 
 insert into food (name,cost,img,filepath,type,region,coupon,rate,regdate) values(
