@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	xml : 사용자 정의 태그를 인정하는 문서 
+	내 마음대로 태그를 만들어도 에러가 안나지만
+	JSP엔진이 요구하는 태그 양식이 있기 때문에
+	아무렇게나 적을 경우에는 원하는 작업이 불가
+	
+-->
+<!-- java:comp/env comp : context 파일, env : context 태그 -->
+<Context>
+	<Resource 	name="jdbc/mysql"
+				auth="Container"
+				driverClassName="com.mysql.jdbc.Driver"
+				type="javax.sql.DataSource"
+				url="jdbc:mysql://localhost:3306/mallddang"
+				username="root"
+				password="multi"
+				maxActive="20"
+				maxIdle="10"
+				maxWait="-1"/>
+</Context>
+
+<!-- 
+	name : 이름
+	auth : 권한 (웹 전체는 Container라고 칭함.)
+	url : 오라클 위치
+	maxActive : 최대 수용할 컴퓨터(Client) 갯수, -1은 무한대
+	maxIdle : 놀고있는(기본) 컴퓨터(Client) 수용량, -1은 무한대
+	maxWait : 5라고 하면 5분간 기다리게 함. 0이면 기다릴 수 없음. -1은 자리가 나올때까지 무한정 대기
+	 -->

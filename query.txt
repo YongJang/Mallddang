@@ -30,7 +30,7 @@ foodList		varchar(200)	NULL,
 foodCost		int(11)		NULL,
 totalCost		varchar(20)	NULL,
 coupon			int(11)		NULL
-)charset=utf-8;
+)charset=utf8;
 
 
 //////////// 상품 리스트 ///////////////
